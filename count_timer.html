@@ -1,0 +1,183 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown Timer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @font-face {
+        font-family: "AzurBold";
+        src: url("./Fonts/Wiescher Design - Azur Bold.otf") format("opentype");
+      }
+      @font-face {
+        font-family: "AzurLight";
+        src: url("./Fonts/Wiescher Design - Azur Light.otf") format("opentype");
+      }
+      @font-face {
+        font-family: "AzurNormal";
+        src: url("./Fonts/Wiescher Design - Azur Normal.otf") format("opentype");
+      }
+      @font-face {
+        font-family: "AzurMedium";
+        src: url("./Fonts/Wiescher Design - Azur Medium.otf") format("opentype");
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-900 text-white font-sans flex items-center justify-center h-screen w-screen"
+  >
+    <div class="text-center relative h-full w-full">
+      <div class="absolute inset-0">
+        <img
+          src="./Links/KarGo on Road.jpg"
+          alt="Background"
+          class="w-full h-full object-cover"
+          style="opacity: 0.1"
+        />
+      </div>
+
+      <div
+        class="relative z-10 flex flex-col items-center justify-between h-full w-full"
+      >
+        <div class="w-full flex flex-col items-center">
+          <img
+            src="./Untitled-1.svg"
+            alt="icon"
+            class="xl:w-12 lg:w-10 md:w-8 min-[320px]:w-6 xl:h-12 lg:h-10 md:h-8 min-[320px]:h-6 xl:mt-10 lg:mt-8 md:mt-6 sm:mt-4 min-[320px]:mt-2"
+          />
+          <div
+            class="w-[90%] xl:mt-10 lg:mt-8 md:mt-6 sm:mt-4 min-[320px]:mt-2 border border-t-grey"
+          ></div>
+        </div>
+        <div>
+          <div
+            class="xl:text-2xl lg:text-xl md:text-lg sm:text-sm min-[320px]:text-xs uppercase tracking-wider mb-4"
+            style="font-family: 'AzurMedium'"
+          >
+            The culmination of 7 <br />
+            years of hard work and testing
+          </div>
+
+          <div class="flex justify-center text-5xl font-bold mb-4 pt-6">
+            <div
+              class="border-l border-grey-500 xl:px-16 lg:px-12 md:px-8 sm:px-4 min-[320px]:px-2"
+            >
+              <div
+                id="days"
+                class="count xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl min-[320px]:text-lg"
+                style="font-family: 'AzurNormal'"
+              >
+                3
+              </div>
+              <div
+                class="text-white bg-pink-200 xl:text-2xl lg:text-xl md:text-lg sm:text-sm min-[320px]:text-xs mt-2"
+                style="font-family: 'AzurBold'"
+              >
+                Days
+              </div>
+            </div>
+            <div
+              class="border-l border-grey-500 xl:px-16 lg:px-12 md:px-8 sm:px-4 min-[320px]:px-2"
+            >
+              <div
+                id="hours"
+                class="count xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl min-[320px]:text-lg"
+                style="font-family: 'AzurNormal'"
+              >
+                23
+              </div>
+              <div
+                class="text-white bg-pink-200 xl:text-2xl lg:text-xl md:text-lg sm:text-sm min-[320px]:text-xs mt-2"
+                style="font-family: 'AzurBold'"
+              >
+                Hours
+              </div>
+            </div>
+            <div
+              class="border-l border-grey-500 xl:px-16 lg:px-12 md:px-8 sm:px-4 min-[320px]:px-2"
+            >
+              <div
+                id="minutes"
+                class="count xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl min-[320px]:text-lg"
+                style="font-family: 'AzurNormal'"
+              >
+                34
+              </div>
+              <div
+                class="text-white bg-pink-200 xl:text-2xl lg:text-xl md:text-lg sm:text-sm min-[320px]:text-xs mt-2"
+                style="font-family: 'AzurBold'"
+              >
+                Minutes
+              </div>
+            </div>
+            <div
+              class="border border-grey-500 border-t-0 border-b-0 xl:px-16 lg:px-12 md:px-8 sm:px-4 min-[320px]:px-2"
+            >
+              <div
+                id="seconds"
+                class="count xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl min-[320px]:text-lg"
+                style="font-family: 'AzurNormal'"
+              >
+                54
+              </div>
+              <div
+                class="text-white bg-pink-200 xl:text-2xl lg:text-xl md:text-lg sm:text-sm min-[320px]:text-xs mt-2"
+                style="font-family: 'AzurBold'"
+              >
+                Seconds
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-xs mt-6 mb-4" style="font-family: 'AzurNormal'">
+          Academy of Robotics, RAF Neatishead, Birds Lane, Horning, NR8 12YB |
+          +996 544 1639 44 | iamalive@academyofrobotics.co.uk
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Countdown timer logic
+      function startCountdown() {
+        const endDate = new Date(); // Set the countdown end date/time here
+        endDate.setDate(endDate.getDate() + 3); // Example: 3 days from now
+
+        function updateTimer() {
+          const now = new Date();
+          const timeLeft = endDate - now;
+
+          if (timeLeft <= 0) {
+            clearInterval(timer);
+            return;
+          }
+
+          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor(
+            (timeLeft % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+          document.getElementById("days").textContent = days;
+          document.getElementById("hours").textContent = hours;
+          document.getElementById("minutes").textContent = minutes;
+          document.getElementById("seconds").textContent = seconds;
+        }
+
+        const timer = setInterval(updateTimer, 1000);
+      }
+
+      startCountdown();
+    </script>
+  </body>
+</html>
